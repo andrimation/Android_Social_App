@@ -1,0 +1,260 @@
+#: import MapView kivy_garden.mapview.MapView
+#:import MapMarkerPopup kivy_garden.mapview.MapMarkerPopup
+#:import MapViewImp MapViewImp.MapViewImp
+#:import MapViewBackground MapViewBackground.MapViewBackground
+#:import ImageButton ImageButton.ImageButton
+#:import AsyncImageButton ImageButton.ImageButton
+#:import MDTextFieldInput MDTextFieldMessageBubble.MDTextFieldMessageBubble
+
+ScreenManager:
+    LoginScreen
+    CreatePostScreen
+    PostScreen
+    MainScreen
+    UserScreen
+    CurrentThreadMessagesScreen
+    RegisterScreen
+    PhotosGalleryScreen
+
+
+
+<LoginScreen>:
+    id:LoginScreen
+    name: 'LoginScreen'
+    # Zaminieć to video na animację po prostu screenów.
+
+    MapViewImp:
+        id: MainMap
+        lat:53.428
+        lon:14.527
+        zoom: 15
+        double_tap_zoom: True
+        root_property: root
+        __init__: root.create_animation()
+        on_zoom: root.nothing()
+        on_touch_down: root.nothing()
+        pause_on_action: False
+        opacity: 0
+
+#    Video:
+#        id: background1
+#        pos_hint: {"y":-1.5,"x":-1}
+#        pos: -1,-1
+#        size_hint_y: 4
+#        size_hint_x:3.2
+#        source:"video_.avi"
+#        state: "play"
+#        options: {'allow_stretch': True,'eos': 'loop'}
+#        allow_fullscreen: True
+#        fullscreen: True
+
+    MDCard:
+        id: MainLoginCard
+        size_hint: 0.95,0.8
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+
+        padding: 25
+        spacing: 25
+#        opacity: 0.6
+        opacity: 0
+
+    AnchorLayout:
+        pos_hint : {"top":1.2}
+        Image:
+            source: "logo.png"
+            size_hint_y: 0.5
+            size_hint_x: 0.5
+
+
+    MDTextField
+        id: userName
+        hint_text: "username"
+        size_hint_x: None
+        width: MainLoginCard.width *0.7
+        pos_hint: {"center_x":0.5,"center_y":0.50}
+        opacity: 0
+
+    MDTextField
+        id: userPassword
+        hint_text: "password"
+        size_hint_x: None
+        width: MainLoginCard.width *0.7
+        pos_hint: {"center_x":0.5,"center_y":0.42}
+        password: True
+        opacity: 0
+
+    MDFillRoundFlatButton
+        id: LoginButton
+        size_hint_x: None
+        width: MainLoginCard.width *0.6
+        elevation: 8
+        text: "Login"
+        pos_hint: {"center_x":0.5,"center_y":0.28}
+        md_bg_color: 0.2,0.5,1
+        on_press: root.check_credentails()
+        opacity: 0
+        disabled: True
+
+    MDFillRoundFlatButton
+        id: RegisterButton
+        size_hint_x: None
+        width: MainLoginCard.width *0.6
+        text: "Register"
+        pos_hint: {"center_x":0.5,"center_y":0.18}
+        md_bg_color: 0.2,0.5,1
+        on_press: root.register_user()
+        opacity: 0
+        disabled: True
+
+
+<RegisterScreen>
+    id:RegisterScreen
+    name: 'RegisterScreen'
+
+<MainScreen>:
+    name: 'MainScreen'
+
+<PostScreen>:
+    id: PostScreen
+    name: "PostScreen"
+
+<CreatePostScreen>
+    name: "CreatePostScreen"
+
+<UserScreen>
+    id: UserScreen
+    name: "UserScreen"
+
+<CurrentThreadMessagesScreen>
+    name: "CurrentThreadMessagesScreen"
+
+
+<AlertDialogContent>
+    size_hint_y: None
+    size: app.get_running_app().windowSize[0]*0.7,app.get_running_app().windowSize[1]*0.7
+    GridLayout:
+        cols: 1
+        rows: 2
+        spacing: 10
+        MDLabel:
+            id: textLabel
+            font_size: "20sp"
+            text: " Czy na pewno chcesz dodać post alarmowy ? \n\n\n      Post alarmowy spowoduje powiadomienie wszystkich użytkowników w promieniu kilometra. \n\n - Pamiętaj że możesz użyć postu alarmowego tylko raz w tygodniu. \n\n - W razie potrzeby możesz jednak wykupić dodatkowe posty alarmowe."
+            theme_text_color: "Custom"
+            text_color: 1,1,1
+
+<PlaceInfoDialogContent>
+    size_hint_y: None
+    size: app.get_running_app().windowSize[0]*0.7,app.get_running_app().windowSize[1]*0.7
+    GridLayout:
+        cols: 1
+        rows: 2
+        spacing: 10
+        MDLabel:
+            font_size: "18sp"
+            text: " To choose your Home/Work localization, double tap on map. \n\n Remember, you can set your Home/Work localization only once a month! "
+            theme_text_color: "Custom"
+            text_color: 1,1,1
+
+<UsersScrollView>
+    size_hint_y: None
+    size: app.get_running_app().windowSize[0]*0.7,app.get_running_app().windowSize[1]*0.7
+    RecycleView:                          # A Reycleview
+        id: userScrollView
+        viewclass: 'PreviewAllUsersItem'  # The view class is TwoButtons, defined above.
+        scroll_type: ['bars', 'content']
+        bar_width: 25
+        size_hint_x: 1
+        size_hint_y: 1
+
+        RecycleBoxLayout:
+            id: RecycleLayout
+            default_size: None, dp(65)   # This sets the height of the BoxLayout that holds a TwoButtons instance.
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height+10  # To scroll you need to set the layout height.
+            orientation: 'vertical'
+
+
+<PostTimeDialogContent>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDTextField:
+        id: hours
+        hint_text: "Hours ?"
+        multiline: False
+        input_filter: "int"
+
+    MDTextField:
+        id: minutes
+        hint_text: "Minutes ?"
+        multiline: False
+        input_filter: "int"
+
+<DistanceDialogContent>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "50dp"
+
+    MDTextField:
+        id: hours
+        multiline: False
+        input_filter: "int"
+
+<LeftImageWidget>
+    ImageLeftWidget:
+        source: root.source
+        pos_hint: {"top":1}
+
+<LeftImageWidgetOne>
+    ImageLeftWidget:
+        source: root.source
+
+
+<MenuIconListItem>
+    IconLeftWidget:
+        icon: root.icon
+
+<PhotosGalleryScreen>
+    name: "PhotosGalleryScreen"
+
+    MDTopAppBar:
+        pos_hint: {"top":1}
+
+    ScrollView:
+        id: photosScrollView
+        size_hint_y: 0.8
+        pos_hint: {"y":0.1}
+#        do_scroll_y: False
+#        do_scroll_x: True
+        MDGridLayout:
+            id: photosGridLayout
+            cols: 2
+            row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+            row_force_default: True
+            adaptive_height: True
+            padding: dp(4), dp(4)
+            spacing: dp(4)
+
+
+    MDTopAppBar:
+        type: "top"
+        left_action_items:[["arrow-left-thick", lambda x: root.back_to_user_screen(),"Wróć","Wróć"]]
+        right_action_items: [["image-plus", lambda x: root.add_photo_to_gallery(),"Add photo","Add photo"]]
+
+<PhotoGalleryDialogContent>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+    MDTextField:
+        id: photoComment
+        multiline: True
+        max_lines: 4
+        hint_text: "Add photo description \nor leave blank: "
+
+

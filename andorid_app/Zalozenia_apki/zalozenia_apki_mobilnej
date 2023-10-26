@@ -1,0 +1,238 @@
+A) Napisać apkę w taki sposób że chuj z wyglądem - ma działać i mieć najważniejsze ficzery.
+
+B) Poszukać inwestora.
+   - PODSTAWOWY ARGUMENT !! -> nie ma obecnie aplikacji która by komunikowała nas z ludźmi w pobliżu w czasie rzeczywistym
+   a) dowiedzieć się o poszukiwaniu inwestrów
+   b) opracować prezentacje
+	- Generalnie moim problemem wcześniej było to że chciałem robić wszystko sam - teraz napiszę poprawnie działającą apkę
+	ale po to by móc jej działanie zaprezentować. Chuj z wyglądem. Cel to znalezienie inwestora, który zainwestuje - a więc zartrudni ludzi
+        z którymi napiszę tą aplikację - albo inwestor też zatrudni mnie do pracy przy tej aplikacji
+   - wskazać cele dla inwestora -  generalnie że nie chodzi mi o kasę, ale żeby to zrobić i żeby działało.
+   - cel ostateczny - być przejętym przez facebooka.
+   - powiedzieć też że znam swoje słabe strony i np że jestem samoukiem i chędnie będę się uczył od innych programistów.
+   - nie ja muszę kierować tym projektem
+
+   - dodać że każdy będzie miał ze sobą swoje ID w kieszeni
+   - że zarobić można np na malych sprzedawcach i że będą oni mogli prezentować swoje promocje lokalnym odbiorcom
+   - możliwość śledzenia poruszania osób - wnioskowania czy głównie jeżdza, czy chodza, czy rowerem itp itd
+   - posty alarmowe - płatne, więcej niż jeden
+   - np konto wip może widzieć dokładniejsze lokalizacje !
+
+   + ludzie są ciekawscy.
+####################### DONE ####################################
+  #########
+  # AKT I #
+  #########
+
+  1) Skompilować aplikację na Androida
+  a1) skompilować aplikację do apk      ++++++++++++
+  a) zrobić działający GPS na telefonie ++++++++++++
+  c) jak aplikacja będzie na telefonie - zrobić poprawnie aktualizującą się pozycję użytkownika - żeby poruszał się po mapie ++++++
+  d) dodać sensowne ikonki userów   ++++++++
+  b) dodać auto odświerzanie mapy !! - np postmanem puszczać zmiany pos userów czy dodawać posty
+  1A) Zrobić refaktoryzację !!! ( Spauzować gps i napisać na windowsie !! )
+    I tak spróbowac to jakoś zrefaktoryzować !   -> chuj wie, nie da się, proxy wymusza
+     c) zmniejszyć ikonki
+  a)  dodać ikonke postu
+  a1) Post wyświetla się po kliknięciu w niego -> zrobić że post otwiera się jako osobny screen - wtedy sobie wszystko fajnie napiszę w kivy !
+  b) posty można komentować
+  1) !! Dodać możliwość dodawania postów w apce !
+  2) dodać nazwę usera !
+  c) dodając post można ustawić jak długo ma sie wyświetlać
+  e) - możliwość dodania postu alarmowego - 1 km
+  k) dodać do bazy danych funkcje które uwzględniają posty alarmowe i (czas wyświetlania) ++++
+  kk) dodać sensowną ikonkę alertu
+  g) zrobić przycisk do wyświetlania wszystkich postów w okolicy.
+  g) zrobić przycisk do wyświetlania wszystkich userów w okolicy.
+  d) dodać coś takiego, że jak posty/użytkownicy się nakładają, to wyskakuje okienko w którym możemy wybrać który chcemy
+  z) dodać do main.app afunkcje które uwzględniają powyższe
+  post ma : Tytuł, nazwę użytkownika + zdjęcie + treść postu
+  q) dodać złaczenie i wyświetlanie zdjęć w poście.
+  2) Zrobić pojawianie sie i znikanie po czasie postów !!!!!!!!!!!!
+  - poprawić że jak wyślę posta, to nie pojawia sie napis "Post wysłano !"   !!
+  1) Zrobić kartę - profil użytkownika
+  c) dodać strony profilowe użytkowników i zdjęcia ( z pytaniem - jak przechowywać zdjęcia w bd )
+  a) dodawanie innych użytkowników do znajomych i usuwanie
+  b) dodać okno notyfikacji o zaproszeniu czy wiadomości
+  b) dodać wiadomości prywatne między użytkownikam
+  4) Dom, praca
+  a) dodać lokalizację "Dom" ( nie widzą jej inni )
+  b) dodać lokalizację "Praca"
+
+  ##########
+  # AKT II #
+  ##########
+
+  # Problem przesuwania na mapie - zrobić porządek że markery nie blokują przesuwania.
+
+  # Problem wydajności - łączyć wielu userów blisko siebie w jeden marker z numerkiem ilu userów !
+
+  # Rozwiązać problem updateowania wszystkich markerów - ograniczyć ciągłe obliczenia - problem rozwiązany w ten sposób, że serwer oblicza kmeans.
+
+  # Rozkminić ładowanie nie wszystkich userów na raz - spróbować ograniczyć obliczenia do tego co widać na ekranie - Może zrobić że po otrzymaniu danych userów z serwera
+  # od razu opracować je z Kmeans w osobnym wątku, a w miarę przybliżania tylko nakładać nowe markery ? - coś musi być z wątkami, muszę to jakoś rozbić.
+
+  # Zrobić żeby markery pojawiały się od razu po zalogowaniu
+
+  # Problem - coś się pierdoli i po kilku kliknięciach w zbiorcze na mapie ikony, trzeba zoomować, żeby sie inne otworzyły.
+  # Pawdopodobnie też trzeba dopracować szerokość łapania kliknięcia w zależności od zoomu
+
+  # Zwracać z serwera uporządkowaną listę osób i postów, od najbliższych do najdalszych,
+
+  # Zwiecha po wyjściu z okna jednego usera. Może jakoś zobić, że tylko pojedyncze duże markery możemy rozbić na pojedyncze osoby
+  # , a nie wszystkich
+
+  # Userów i posty ładować częściami do all_users/posts_dialog
+
+  # Mieć 3 ikony zbiorcze -> Person, Person+Post, Post - i w zależności co jest w całym zbiorze, taka ma być ikona.
+
+  # Dodać w pełni funkcjonalne ikony postów i posty
+
+  # Dodawanie postów bez zdjęcia
+
+  # Zrobić oko gdzie będą wszystkie wiadomości
+
+  # Dodać żeby powiadomienie znikało po przeczytaniu wiadomości  !
+
+######## Poprawić że jak odpalamy z grupy markerów ( a więc nie przaglądamy wszystkich userów, to żeby pokazywało nam tylko userów z markera !! )  --> może później ??
+
+  # Dodać żeby będąc  blisko mapy częściej aktualizowali się userzy, a będąc daleko, aby wolniej ! - albo inaczej, nie częsta aktualizacja userów, częsta wiadomości
+
+  # Nie ładować całej konwersacji jak długa, a tylko część. --> na początek pobierać z serwera tylko 25 ostatnich wiadomości.
+
+  # dodać aby mapa aktualizowała się sama wolniej, ale wiadomości szybciej
+
+ # Brakuje migających powiadomień o wiadomościach, postach i zaproszeniach
+
+ # dodać możliwość usunięcia postu
+
+ # Nie zwracać z serwera 2x tej samej listy userów !!
+
+ # dodać możliwość pobrania całej konwersacji z daną osobą
+
+ # Dodać pytanie czy chcesz usunąć konwersację
+
+ # Naprawić usuwanie konwersacji i ich otwieranie. Np jak wywalimy konwersację, to ona i tak pojawia się jak wejdziemy przez
+ # osobę. - i problem co dalej z rozmową, jak postanowimy znów napisać do tej samej osoby ? - nie oznaczać threadu jako usunięty, ale wiadomości jako usunięte.
+
+ # Dodać możliwość ustawiania lokalizacji pracy i domu  -> coś jest z datami w bazie danych
+
+ # Jak klikniemy w Posts (0) to wywala
+
+ # Poprawić żeby np jak jesteś w jakimś menu, to żeby nie klikały się markery z mapy - dodać np flage ze jesteś w menu i marker ma sie nie wykonywac
+
+ # Zrobić żeby po zalogowaniu mapa aktualizowała się sama, bez konieczności zoomu.
+
+ # Problem z przewijalna listą postów i osób - dubluje ! - serwer coś pierdoli i zwraca podwójną listę ;00 - w ogóle jakieś problemy z _kmeans - rozkminić to- > ale chyba wynikają z braku zwrotu z bazy danych.
+
+ # Poprawić przesuwanie po mapie kivy ! - za często sama się przybliża !!
+
+ # Dodać przyciski do zoomu i wyłączyć zoom palcami na mapie !?  == zoom działa dobrze - chyba nie potrzeba !!
+
+ # Dodać kartę tworzenia użytkownika - mail itp itd.
+    - Jake dane od użytkownika
+        - Imię i nazwisko
+        - Wiek
+        - Płeć
+        - Adres e-mail
+        - nr telefonu
+        - wysyłanie do użytkownika maila aktywacyjnego
+
+    # Zrobić porządek z markerami bo się chujowo w nie klika - czasem klikanie się blokuje i chuj. - czyli nie updateować markerów kiedy jesteśmy w show all users mode - markers counter musi być w zależności czy mamy marker domu i pracy !
+
+    # Problem polega na tym że recursive counter iteruje tylko po markerach które są widoczne na ekranie, a pomija te których nie widać. W ogóle ta liczba się dziwnie zmienia. - g ogóle nie używa tego jebanego marker countera !
+
+    # Są jakieś problemy z listą userów w trybie display all users - brakuje im np nazwy usera czasem albo geo distance- przekazuje pusta
+
+    # Mapa sie nie updejtuje po przesunięciu
+
+##################################################
+#                                                #
+##################################################
+# Czego brakuje i problemy :
+# NAJPIERW NAJWAZNIEJSZE FUNKCJONALNOŚCI - PÓŹNIEJ DOPIERO DODATKI WYGLĄDU !!
+
+# Dodać dodawanie zdjęcia profilowego
+    - zdjęcie dodajemy ze swojego profilu, klikając w ikonę osoby - może być też ikona foto+
+    - wchodząc na czyjś profil zdjęcie pobieramy za każdym razem z serwera, zamiast pobierać wszystkich w okolicy?
+    - zdjęcie mozna zmienić lub usunąć
+
+# Dodać miniaturki zdjęć osób - w listach postów, w markerach na mapie
+
+# Rozszerzyć profile użytkowników- żeby mogli dodawać zdjęcia - galerie,
+
+# Dodać żeby było widać znajomych usera
+
+# Dodać żeby posty alarmowe pojawiały się bezpośrednio na mapie ;0
+
+# Dodać możliwość wielu zdjec do postów.
+
+# Dodać permission dla andorida do dostępu do zdjęć
+
+# dodać powiadomienia na telefonie !
+
+# Wyczyścić migracje na serwerze heroku
+
+# Użyć midjourney do wygenerowania layoutu !
+
+# Dodać warunki bycia zalogowanym !!
+
+# Dodać tryb 10 m, że wyświetla wszystkich wokół nas aktualnie
+
+# Dodać żeby mieli swoje "walle"
+
+# Dodać wykrywanie znajomego który pojawia się w okolicy ( z możliwością wyłączenia tego dla wybranych znajomych
+  albo też żeby np nie mogło wykrywać nas - żeby userzy mieli pełną konfigurowalność)
+
+# Dodać możliwość sprzedawania rzeczy dla użytkowników !
+
+# Dodać podstawowe reklamy dla sprzedawców !
+
+# Dodać do postu nie tylko czas wyświetlania ale też dystans w jakim ktoś musi się znajdować aby go widzieć
+
+# Wyszukiwanie userów po imieniu itp.
+
+
+# Dodać animację po otwarciu apki w trakcie jak ładują sie markery
+
+# Brakuje migających markerów
+
+# Ogarnąć gradienty kolorów aplikacji ! ogarnąc czy można mieć tła gradientowe. - poświęcić osobne # na wygląd !
+
+# Poprawić graficzny wygląd postów i komentarzy.
+
+# Dodać coś takiego że jak mamy "show all users on map, to robi zoom-out mapy tak żeby objąć wszystkich pokazanych userów. Jak wychodzimy z tego to robi zoom na
+ marker początkowy :_"
+
+
+# ZEBRAĆ HAJS NA DZIAŁANIE SERWERA !!
+
+# NOWE IKONY I PROJEKT GRAFICZNY
+
+# W TYM MIEJSCU ZROBIĆ SERIO TYDZIEŃ REFAKTORYZACJI BO JEST MASAKRA
+
+
+5) Skomunikowanie aplikacji z facebookiem i z innymi socialapkami -
+  a) możliwość logowania sie za pomocą facebooka albo google
+  b) moliwość zapraszania znajomych
+
+6) Zrobić aplikację do przeglądarki
+
+7) Dążyć do połączenia z facebookiem
+
+ b) skompilować aplikację na iphona  -> PÓŹNIEJ
+
+#############################
+# PREZENTACJA - >
+
+    Skompilować aplikację:
+        - na androida
+        - na ios
+
+    Wygenerować użytkowników dla bazy danych online nie dla całego szczecina a dla 3 okolic
+        - dla niebuszewa
+        - dla okolicy lokalizacji domu
+        - dla okolicy lokalizacji pracy
+        ( starczy ok 8 k userów )
+
+    Przygotować prezentację.
